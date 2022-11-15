@@ -1,0 +1,101 @@
+ <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                MANAGE DEPARTMENT
+                            </h2>
+    
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead>
+                                        <tr>
+                                             <th>Department Name</th>
+                                              <th>Faculty</th>
+                                            <th>Description</th>
+                                            <th>Created Date</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Department Name</th>
+                                             <th>Faculty</th>
+                                            <th>Description</th>
+                                            <th>Created Date</th>
+                                           
+                                        </tr>
+                                    </tfoot>
+                                    <tbody id="deptTable">
+                                        {{!-- {{#each data}}
+                                        <tr>
+                                            <td>{{name}}</td>
+                                            <td>{{faculty}}</td>
+                                            <td>{{description}}</td>
+                                            <td>{{date}}</td>
+                                            
+                                        </tr>
+                                        {{/each}} --}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+
+
+
+ <script>
+                          const { hostname, host, protocol } = window.location;
+  const dynHost =
+    hostname === "localhost" || hostname === "127.0.0.1"
+      ? "localhost:8070"
+      : host;
+  const xhrb = new XMLHttpRequest();
+
+  xhrb.open("GET", `${protocol}//${dynHost}/get_department`);
+
+  xhrb.onreadystatechange = function () {
+    if (this.status == 200 && this.readyState == 4) {
+      let apiData = JSON.parse(this.responseText);
+      console.log("good==========better", apiData);
+      let spend = document.getElementById("deptTable");
+      for (let i = 0; i < apiData.length; i++) {
+        let content = `
+      <tr>                                             
+                                                        <td>${apiData[i].name}</td>
+                                                      
+                                                        <td> ${apiData[i].faculty}</td>
+                                                          <td> ${apiData[i].description}</td>  
+                                                             <td> ${apiData[i].date}</td>
+                                                                  <td class="td-actions ">
+                                              
+                                            <a id='btnexpensdelete'   data-id="${apiData[i]._id}" rel="tooltip" class="btn btn-danger"
+                                                data-bs-toggle="tooltip" data-bs-placement="right"
+                                                title="Click to delete Expense" >
+                                                <i class="material-icons">cancel</i>
+                                            </a> &nbsp; &nbsp;
+                                            <a id="btnexpensedit" data-id="${apiData[i]._id}" rel="tooltip" class="btn btn-success"
+                                                data-bs-toggle="tooltip" data-bs-placement="right"
+                                                title="Click to Edit Expense" data-toggle="modal" data-target="#add">
+                                                <i class="material-icons">edit</i>
+                                            </a>
+
+                                                            </td>
+                                                        
+                                                        </tr>
+`;
+
+        spend.innerHTML += content;
+      }
+    } else {
+      console.log("status", this.statusText);
+    }
+  };
+  xhrb.send();
+                    </script>

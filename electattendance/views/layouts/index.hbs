@@ -1,0 +1,507 @@
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <title>FUL | Home</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Bootstrap Core Css -->
+    <link
+      href="../assets/plugins/bootstrap/css/bootstrap.css"
+      rel="stylesheet"
+    />
+
+    <!-- Waves Effect Css -->
+    <link href="../assets/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../assets/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="../assets/plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../assets/css/style.css" rel="stylesheet" />
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../assets/css/themes/all-themes.css" rel="stylesheet" />
+  </head>
+  <style>
+    input[type=email], input[type=password],input[type=text], input[type=date],
+    select { width: 100%; padding: 12px 20px; margin: 8px 0; display:
+    inline-block; border: 3px solid #ccc; border-radius: 5px; box-sizing:
+    border-box; text-align: center; font-size: 18px; } input[type=file], select,
+    textarea { width: 100%; padding: 12px 20px; margin: 8px 0; display:
+    inline-block; border: 3px solid #ccc; border-radius: 5px; box-sizing:
+    border-box; text-align: center; font-size: 18px; } .input-icons i {
+    position: absolute; } .input-icons { width: 100%; margin-bottom: 10px; }
+    .icon { padding: 22px; color: green; min-width: 50px; text-align: center;
+    font-size: 28px; } .input-field { width: 100%; padding: 10px; text-align:
+    center; }
+  </style>
+  <body class="theme-red">
+    <!-- Page Loader -->
+    {{!-- <div class="page-loader-wrapper">
+      <div class="loader">
+        <div class="preloader">
+          <div class="spinner-layer pl-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <p>Please wait...</p>
+      </div>
+    </div> --}}
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <div class="search-icon">
+        <i class="material-icons">search</i>
+      </div>
+      <input type="text" placeholder="START TYPING..." />
+      <div class="close-search">
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+    <!-- #END# Search Bar -->
+
+    <!-- Top Bar -->
+    <nav class="navbar" style="background-color: #17397d;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a
+            href="javascript:void(0);"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar-collapse"
+            aria-expanded="false"
+          ></a>
+          <a href="javascript:void(0);" class="bars"></a>
+          <a class="navbar-brand" href="/dashboard">FEDERAL UNIVERSITY LOKOJA</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- Tasks -->
+            <li class="dropdown">
+              <a
+                href="/"
+                class="dropdown-toggle"
+                {{! data-toggle="dropdown" }}
+                role="button"
+              >
+                <i class="material-icons">power_settings_new</i>
+
+              </a>
+
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+      <!-- Left Sidebar -->
+      <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+          <div class="image" style="margin-left: 32%;">
+            <img
+              src="../assets/images/users.png"
+              width="60"
+              height="60"
+              alt="User"
+            />
+          </div>
+          <div class="info-container" style="color: black;">
+            <div
+              class="name"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: black;margin-left:50px; display:inline-flex; text-transform:capitalize"
+            > <h5 style="color:black" id="fname"></h5> &nbsp; &nbsp; <h5 id="lname"></h5> </div>
+            {{! <div class="email" style="color: black;">EbukaAjogwu89@gmail.com</div> }}
+
+          </div>
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+          <ul class="list">
+            <!-- <li class="header">MAIN NAVIGATION</li> -->
+
+            <li class="active">
+              <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">assignment</i>
+                <span>Attendance</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a href="/dashboard">Mark Attendance</a>
+                </li>
+
+                <li>
+                  <a href="/attend_list">Course List</a>
+                </li>
+
+              </ul>
+            </li>
+
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">widgets</i>
+                <span>Student</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a href="/student">
+                    <span>Add Student</span>
+                  </a>
+
+                </li>
+                <li>
+                  <a href="/manage_student">
+                    <span>Manage Student</span>
+                  </a>
+
+                </li>
+                <li>
+                  <a href="/registerCourse">
+                    <span> Course Registration</span>
+                  </a>
+                  {{! <ul class="ml-menu">
+                    <li>
+                      <a href="#"></a>
+                    </li>
+
+                  </ul> }}
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">people</i>
+                <span>Department</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a href="/department">Create Department</a>
+                </li>
+                <li>
+                  <a href="/managedepartment">Manage Department</a>
+                </li>
+
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">layers</i>
+                <span>Faculty</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a href="/faculty">Create Faculty</a>
+                </li>
+                <li>
+                  <a href="/managefaculty">Manage Faculty</a>
+                </li>
+
+              </ul>
+            </li>
+
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">swap_calls</i>
+                <span>Course</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a href="/course">Create Course</a>
+                </li>
+                <li>
+                  <a href="/managecourse">Manage Course</a>
+                </li>
+
+              </ul>
+            </li>
+
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">person</i>
+                <span>Administrator</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a href="/createadmin">Create Admin</a>
+                  <a href="/manageadmin">Manage Admin</a>
+                </li>
+
+              </ul>
+            </li>
+            <li>
+              <a href="/">
+                <i class="material-icons">exit_to_app</i>
+                <span>Sign-Out</span>
+              </a>
+
+            </li>
+
+          </ul>
+        </div>
+        <!-- #Menu -->
+        <!-- Footer -->
+        <div class="legal">
+          <div class="copyright">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>
+            <a href="javascript:void(0);">Federal University Lokoja</a>.
+          </div>
+          <div class="version">
+            <b>Version: </b>
+            1.0.1
+          </div>
+        </div>
+        <!-- #Footer -->
+      </aside>
+      <!-- #END# Left Sidebar -->
+      <!-- Right Sidebar -->
+      <aside id="rightsidebar" class="right-sidebar">
+        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+
+          <li role="presentation" class="active"><a
+              href="#settings"
+              data-toggle="tab"
+            >SETTINGS</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+          <div
+            role="tabpanel"
+            class="tab-pane fade in active in active"
+            id="settings"
+          >
+            <div class="demo-settings">
+              <p>GENERAL SETTINGS</p>
+              <ul class="setting-list">
+                <li>
+                  <span>Report Panel Usage</span>
+                  <div class="switch">
+                    <label><input type="checkbox" checked /><span
+                        class="lever"
+                      ></span></label>
+                  </div>
+                </li>
+                <li>
+                  <span>Email Redirect</span>
+                  <div class="switch">
+                    <label><input type="checkbox" /><span
+                        class="lever"
+                      ></span></label>
+                  </div>
+                </li>
+              </ul>
+              <p>SYSTEM SETTINGS</p>
+              <ul class="setting-list">
+                <li>
+                  <span>Notifications</span>
+                  <div class="switch">
+                    <label><input type="checkbox" checked /><span
+                        class="lever"
+                      ></span></label>
+                  </div>
+                </li>
+                <li>
+                  <span>Auto Updates</span>
+                  <div class="switch">
+                    <label><input type="checkbox" checked /><span
+                        class="lever"
+                      ></span></label>
+                  </div>
+                </li>
+              </ul>
+              <p>ACCOUNT SETTINGS</p>
+              <ul class="setting-list">
+                <li>
+                  <span>Offline</span>
+                  <div class="switch">
+                    <label><input type="checkbox" /><span
+                        class="lever"
+                      ></span></label>
+                  </div>
+                </li>
+                <li>
+                  <span>Location Permission</span>
+                  <div class="switch">
+                    <label><input type="checkbox" checked /><span
+                        class="lever"
+                      ></span></label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <!-- #END# Right Sidebar -->
+    </section>
+
+    <section class="content">
+      <div class="container-fluid">
+
+        {{{body}}}
+
+      </div>
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="../assets/plugins/jquery/jquery.min.js"></script>
+    <script src="../assets/plugins/jquery/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="../assets/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    {{! <script
+      src="../assets/plugins/bootstrap-select/js/bootstrap-select.js"
+    ></script> }}
+
+    <!-- Slimscroll Plugin Js -->
+    <script
+      src="../assets/plugins/jquery-slimscroll/jquery.slimscroll.js"
+    ></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../assets/plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="../assets/plugins/jquery-countto/jquery.countTo.js"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="../assets/plugins/raphael/raphael.min.js"></script>
+    <script src="../assets/plugins/morrisjs/morris.js"></script>
+
+    <!-- ChartJs -->
+    <script src="plugins/chartjs/Chart.bundle.js"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="../assets/plugins/flot-charts/jquery.flot.js"></script>
+    <script src="../assets/plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="../assets/plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script
+      src="../assets/plugins/flot-charts/jquery.flot.categories.js"
+    ></script>
+    <script src="../assets/plugins/flot-charts/jquery.flot.time.js"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script
+      src="../assets/plugins/jquery-sparkline/jquery.sparkline.js"
+    ></script>
+
+    <!-- Custom Js -->
+    <script src="../assets/js/admin.js"></script>
+    <script src="../assets/js/pages/index.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../assets/js/demo.js"></script>
+
+    <!-- JQuery DataTable Css -->
+    <link
+      href="../assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"
+      rel="stylesheet"
+    />
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script
+      src="../assets/plugins/jquery-datatable/jquery.dataTables.js"
+    ></script>
+    <script
+      src="../assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"
+    ></script>
+    <script
+      src="../assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"
+    ></script>
+    <script
+      src=".../assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"
+    ></script>
+    <script
+      src="../assets/plugins/jquery-datatable/extensions/export/jszip.min.js"
+    ></script>
+    <script
+      src="../assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"
+    ></script>
+    <script
+      src="../assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"
+    ></script>
+    <script
+      src="../assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"
+    ></script>
+    <script
+      src="../assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"
+    ></script>
+
+    <!-- Custom Js -->
+    <script src="../assets/js/admin.js"></script>
+    <script src="../assets/js/pages/tables/jquery-datatable.js"></script>
+
+    <script src="../assets/js/axios.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <script src="../assets/js/select.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{! <script src="../assets/js/sweetalert2.js"></script> }}
+    {{! <script src="../assets/js/sweetalert.min.js"></script> }}
+
+    <script src="../assets/js/sweetalert2.min.js"></script>
+
+    <script src="../assets/js/gt511c3.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="../assets/js/webcamjs/webcam.min.js"
+    ></script>
+
+    <script>
+      const fname = localStorage.getItem("fname")
+       const lname = localStorage.getItem("lname"); 
+       
+       document.getElementById('fname').innerText= fname; 
+       document.getElementById('lname').innerText = lname;
+    </script>
+
+     {{!-- <script src="assets/js/jquery.min.js"></script> --}}
+  
+  </body>
+
+</html>

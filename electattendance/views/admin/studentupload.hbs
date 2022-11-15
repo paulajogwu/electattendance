@@ -1,0 +1,308 @@
+<style>
+	#my_camera {
+		width: 300px;
+		height: 200px;
+		border: 1px solid black;
+	}
+
+	#my_finger {
+		width: 300px;
+		height: 200px;
+		border: 1px solid black;
+	}
+
+	
+
+#imagediv {
+	
+	
+	width: 500px;
+	height: 400px;
+	overflow: hidden;
+    border: 1px solid rgba(51, 122, 183, 0.39);
+  
+}
+
+#imagediv img {
+	width: 100%;
+	height: 500px;
+}
+
+#imagediv div{
+	text-align: center;
+	vertical-align: middle;
+	height: 500px;
+	background: #d3d3d3;
+	display: table-cell;
+}
+
+
+#image {
+	width: 100%;
+}
+
+#imageGallery {
+	padding:0px;
+	margin: 0 auto;
+	width: 100%;
+	height: 100px;
+	overflow: hidden;
+}
+
+#imageGallery img{
+	float: left;
+	width:20%;
+	height: 100%
+}
+
+#deviceInfo {
+	padding:5px;
+	margin: 0 auto;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+
+#dynamicInfoDivs{
+	position: relative;
+	left: 30%;
+}
+
+#Scores {
+	margin: 0 auto;
+	width: 500px;
+    text-align:center;
+    border: 2px solid black; 
+}
+
+#status {
+    min-height: 22px;
+	text-align: center;
+	margin-bottom: 5px;
+	color: red;
+}
+
+#contentButtons{
+	padding: 5px;
+  	text-align: center;
+  	margin-bottom: 5px;
+}
+
+#readerDivButtons {
+	padding: 5px;
+  	text-align: center;
+  	margin-bottom: 5px;
+}
+
+#modalContent{
+	width: 350px;
+	margin: 0 auto;
+	padding : 5px;
+	text-align: left;
+	vertical-align: center;
+}
+
+#saveAndFormats{
+	position:relative;
+	left:660px;
+	top:-750px;
+	width:135px;
+}
+</style>
+<!-- Vertical Layout -->
+
+ {{!-- <link rel="stylesheet" href="assets/css/bootstrap-min.css" /> --}}
+    {{!-- <link rel="stylesheet" href="assets/css/app.css" type="text/css" /> --}}
+<div class="row clearfix">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="card" style="width: 100%;margin:auto">
+			<div class="header" style="text-align: center;">
+				<h2>
+					BIO METRIC DATA
+				</h2>
+
+			</div>
+			<div class="body" style="justify-content:center">
+
+				{{!-- <div class="row">
+					<h4 style="text-align:center">Facial Capturing</h4>
+
+					<div class="col-sm-6">
+						<div id="my_camera"></div>
+						<br />
+						<div class="row">
+							<div class="col-lg-6">
+								<button style="margin:auto; background-color:#17397d;color:white" class="btn"
+									onClick="configure()">Configure</button>
+							</div>
+
+							<div class="col-lg-6">
+
+								<button style="margin-right: 120px; background-color:#17397d;color:white" class="btn"
+									id="capture" onClick="take_snapshot()">Capture</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+
+						<div id="results"></div>
+						<br />
+
+
+					</div>
+				</div> --}}
+
+
+
+				<hr />
+				<div class="row">
+					<h4 style="text-align:center">Finger Print Scanning</h4>
+
+					<div class="col-sm-8" style="margin:auto">
+						
+						{{!-- <div id="my_camera">
+							<img style="height: 180px; width:150px;margin:auto"
+								src="../assets/images/fingerprint-150159.png" />
+						</div>  style="display : none;" --}}
+						    {{!-- <div id="Scores">
+           <h5>Scan Quality : <input type="text" id="qualityInputBox" size="20" style="background-color:#DCDCDC;text-align:center;"></h5> 
+
+       </div> --}}
+<h5 style="margin:auto;font-weight:bold">Select Reader :</h5> &nbsp;
+						 
+            <select style="width:300px" class="form-control" id="readersDropDown" onchange="selectChangeEvent()">
+            </select>
+						<br />
+
+						  <div id="content-capture">    
+            <div id="status"></div>            
+            <div id="imagediv"></div>
+			<br/>
+            <div id="contentButtons">
+                <table width=70% align="center">
+                    <tr>
+                        <td>
+                            <input type="button" class="btn btn-primary" id="clearButton" value="Clear" onclick="Javascript:onClear()">
+                        </td>
+                        {{!-- <td data-toggle="tooltip" title="Will work with the .png format.">
+                            <input type="button" class="btn btn-primary" id="save" value="Save">
+                        </td> --}}
+                        <td>
+                            <input type="button" class="btn btn-primary" id="start" value="Start" onclick="Javascript:onStart()">
+                        </td>
+                        <td>
+                           <input type="button" class="btn btn-primary" id="stop" value="Stop" onclick="Javascript:onStop()">
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-primary" id="info" value="Info" onclick="Javascript:onGetInfo()">
+                        </td>
+                </table>
+            </div>
+       
+            <div id="imageGallery">
+            </div>
+            <div id="deviceInfo">           
+            </div>
+
+          
+        </div>
+					</div>
+
+					{{!-- <div class="col-sm-6">
+						<h5 style="margin:auto;font-weight:bold">Thumb Enrollment Status</h5> &nbsp;
+						<div id="my_finger"></div>
+						<br />
+
+
+					</div> --}}
+				</div>
+
+				<hr />
+				{{!-- <div class="row">
+					<center> <button style="margin:auto; background-color:#17397d;color:white" class="btn"
+							id="captureUpload" onClick="saveSnap()">Upload</button></center>
+				</div> --}}
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- #END# Vertical Layout -->
+<script>
+
+	$(document).ready(function () {
+
+		$("#capture").click(function () {
+
+
+			$("#capture1").hide();
+			$("#results1").show();
+		})
+
+		$("#captureUpload").click(function () {
+
+
+			$("#capture1").show();
+			$("#results1").hide();
+		})
+	})
+</script>
+
+<script language="JavaScript">
+
+	// Configure a few settings and attach camera
+	function configure() {
+		Webcam.set({
+			width: 320,
+			height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+			//name:'upload'
+		});
+		Webcam.attach('#my_camera');
+	}
+	// A button for taking snaps
+
+
+	// preload shutter audio clip
+	var shutter = new Audio();
+	shutter.autoplay = false;
+	shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg' : 'shutter.mp3';
+
+	function take_snapshot() {
+		// play sound effect
+		shutter.play();
+
+		// take snapshot and get image data
+		Webcam.snap(function (data_uri) {
+			// display results in page
+			document.getElementById('results').innerHTML =
+				'<img id="imageprev" name="upload" src="' + data_uri + '"/>';
+		});
+
+		Webcam.reset();
+	}
+
+	function saveSnap() {
+		// Get base64 value from <img id='imageprev'> source c544307de1e7270c896432500
+		var base64image = document.getElementById("imageprev").src;
+      const _id = localStorage.getItem("student_id")
+
+
+		Webcam.upload(base64image, '/upload', function (code, text) {
+			console.log('Save successfully',code,text);
+			Swal.fire(text); 
+			//console.log(text);
+			//window.location.href = '/fingerPrint_upload'
+		});
+
+	}
+</script>
+
+
+
+  <script src="assets/js/es6-shim.js"></script>
+    <script src="assets/js/websdk.client.bundle.min.js" crossorigin="*"></script>
+    <script src="assets/js/fingerprint.sdk.min.js" crossorigin="*"></script>
+    <script src="assets/js/capture.js" crossorigin="*"></script>

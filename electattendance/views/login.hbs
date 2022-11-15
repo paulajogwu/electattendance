@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LOGIN</title>
+  <!-- Favicons -->
+  <link href="assets/images/favicon/favicon.ico" rel="icon">
+  <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/images/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/images/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/images/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/images/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="assets/images/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/login.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card" style="height:500px;width:70%; margin:auto">
+        <div class="row no-gutters">
+
+          <div class="col-md-4" style="margin: auto;">
+            <img src="../assets/images/FULOKOJA.png" style="height:50%; width:100% ; " alt="login"
+              class="login-card-img">
+          </div>
+
+          <div style="background-color: #17397d; width: 10px;"></div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <div class="brand-wrapper" style="text-align: center;">
+                <div class="row">
+
+                  <div class="col-sm-12">
+                    <img src="../assets/images/lokoja.png" alt="logo" style=" width:80%">
+                    <br /> <br />
+                    <b>
+                      <h3 style="color:#17397d">ATTENDANCE SYSTEM</h3>
+                    </b>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+
+              {{!-- <p class="text-"><b>Admin Portal Login - Enter credentials</b></p> --}}
+              <form id="loginForm" class="login-form" style="margin: auto;">
+                <div class="form-group">
+                  <label for="email" class="sr-only">Email</label>
+                  <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
+                </div>
+                <div class="form-group mb-4">
+                  <label for="password" class="sr-only">Password</label>
+                  <input type="password" name="password" id="password" class="form-control" placeholder="***********">
+                </div>
+                <center><input name="login" id="login" class="btn " style="background-color:#17397d ;color:white"
+                    type="submit" value="LOGIN"></center>
+              </form>
+              <br>
+
+              <br>
+
+
+              <nav class="login-card-footer-nav">
+                <p>
+                <p class="text-"><small>© Copyright
+                    <script>document.write(new Date().getFullYear())</script> Federal University Lokoja. All Right
+                    Reserved
+                  </small></p>
+              </nav>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../assets/js/sweetalert2.min.js"></script>
+  <script src="../assets/js/axios.js"></script>
+  <script src="../assets/js/axios.min.js"></script>
+  <script>
+    const loginForm = document.getElementById("loginForm")
+
+    loginForm.addEventListener('submit', () => {
+      event.preventDefault()
+      var email = document.getElementById('email').value
+      var password = document.getElementById('password').value
+
+
+      var data = { email, password }
+      console.log("Data", data)
+      axios({
+        url: `http://localhost:8070/login_admin`,
+        method: 'post',
+        data
+      })
+        .then((res) => {
+          console.log(res);
+          Swal.fire(res.data.message
+            //{
+            //position: 'center',
+            //icon: 'success',
+            //title: `${res.data.message}`,
+            //showConfirmButton: false,
+            //timer: 1500
+          //}
+          );
+
+      //res.data.message,
+      console.log(res, 'rhurrb')
+ const data = res.data.user;
+      console.log(data.fname, 'rhurrb')
+      localStorage.setItem("fname", data.fname);
+      localStorage.setItem("lname", data.lname);
+     
+     
+      
+  setTimeout(function(){
+    window.location.href='/dashboard'
+ }, 3500);
+
+
+    })
+      .catch((err) => {
+        Swal.fire('an error occured pls try again ');
+        console.log();
+      })
+    });
+
+  </script>
+</body>
+
+</html>

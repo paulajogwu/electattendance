@@ -1,0 +1,279 @@
+<style>
+	#my_camera {
+		width: 300px;
+		height: 200px;
+		border: 1px solid black;
+	}
+
+	#my_finger {
+		width: 300px;
+		height: 200px;
+		border: 1px solid black;
+	}
+
+	
+
+#imagediv {
+	
+	
+	width: 350px;
+	height: 200px;
+	overflow: hidden;
+    border: 1px solid rgba(51, 122, 183, 0.39);
+  
+}
+
+#imagediv img {
+	width: 100%;
+	height: 500px;
+}
+
+#imagediv div{
+	text-align: center;
+	vertical-align: middle;
+	height: 500px;
+	background: #d3d3d3;
+	display: table-cell;
+}
+
+
+#image {
+	width: 100%;
+}
+
+#imageGallery {
+	padding:0px;
+	margin: 0 auto;
+	width: 100%;
+	height: 100px;
+	overflow: hidden;
+}
+
+#imageGallery img{
+	float: left;
+	width:20%;
+	height: 100%
+}
+
+#deviceInfo {
+	padding:5px;
+	margin: 0 auto;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+
+#dynamicInfoDivs{
+	position: relative;
+	left: 30%;
+}
+
+#Scores {
+	margin: 0 auto;
+	width: 500px;
+    text-align:center;
+    border: 2px solid black; 
+}
+
+#status {
+    min-height: 22px;
+	text-align: center;
+	margin-bottom: 5px;
+	color: red;
+}
+
+#contentButtons{
+	padding: 5px;
+  	text-align: center;
+  	margin-bottom: 5px;
+}
+
+#readerDivButtons {
+	padding: 5px;
+  	text-align: center;
+  	margin-bottom: 5px;
+}
+
+#modalContent{
+	width: 350px;
+	margin: 0 auto;
+	padding : 5px;
+	text-align: left;
+	vertical-align: center;
+}
+
+#saveAndFormats{
+	position:relative;
+	left:660px;
+	top:-750px;
+	width:135px;
+}
+</style>
+<div class="block-header">
+    <h2>DASHBOARD</h2>
+</div>
+
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+
+        <div class="card">
+
+            <div class="body">
+
+                {{!-- <div class="row">
+
+                    <div class="col-sm-6">
+                        
+
+
+                    </div>
+
+                    
+                </div> --}}
+
+
+                <div class="row">
+                    <hr />
+                    <div class="row">
+
+
+                        <div class="col-sm-6" style="margin:auto">
+<input type="date" style="width:300px" name="data" id="date" />
+                            <h5 style="margin:auto;font-weight:bold">Select Reader :</h5> &nbsp;
+
+                            <select style="width:300px" class="form-control" id="readersDropDown"
+                                onchange="selectChangeEvent()">
+                            </select> 
+
+                            {{!-- <button onclick="check()"> df</button> --}}
+                            <br />
+
+                            <div id="content-capture">
+                                <div id="status"></div>
+                                <div id="imagediv"></div>
+                                <br />
+                                <div id="contentButtons">
+                                    <table width=70% align="center">
+                                        <tr>
+                                            <td>
+                                                <input type="button" class="btn btn-primary" id="clearButton"
+                                                    value="Clear" onclick="Javascript:onClear()">
+                                            </td>
+                                            {{!-- <td data-toggle="tooltip" title="Will work with the .png format.">
+                                                <input type="button" class="btn btn-primary" id="save" value="Save">
+                                            </td> --}}
+                                            <td>
+                                                <input type="button" class="btn btn-primary" id="start" value="Start"
+                                                    onclick="Javascript:onStart()">
+                                            </td>
+                                            <td>
+                                                <input type="button" class="btn btn-primary" id="stop" value="Stop"
+                                                    onclick="Javascript:onStop()">
+                                            </td>
+                                            <td>
+                                                <input type="button" class="btn btn-primary" id="info" value="Info"
+                                                    onclick="Javascript:onGetInfo()">
+                                            </td>
+                                    </table>
+                                </div>
+
+                                <div id="imageGallery">
+                                </div>
+                                <div id="deviceInfo">
+                                </div>
+
+
+                            </div>
+                        </div>
+<div class="col-sm-6">
+    <h5 style="margin:auto;font-weight:bold">Select course</h5> &nbsp;
+
+                        <select id="course" style="width:300px" class="form-control">
+                            <option>Select</option>
+                        </select>
+
+                        <br />
+
+                   
+                    </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<!-- #END# CPU Usage -->
+
+
+<script>
+ 
+                          const { hostname, host, protocol } = window.location;
+  const dynHost =
+    hostname === "localhost" || hostname === "127.0.0.1"
+      ? "localhost:8070"
+      : host;
+
+    const xhrc = new XMLHttpRequest()
+    xhrc.open("GET", `${protocol}//${dynHost}/get_course`);
+    xhrc.onreadystatechange = function () {
+        if (this.status == 200 && this.readyState == 4) {
+            let apiDatac = JSON.parse(this.responseText);
+            let select = document.getElementById('course')
+            console.log("GOOD2", apiDatac, select)
+            apiDatac.forEach(element => {
+                let option = document.createElement('option')
+                option.innerText = element.name;
+                console.log("GOOD3", option)
+                select.append(option)
+            });
+        }
+        else {
+            console.log(this.statusText);
+        }
+    }
+    xhrc.send();
+</script>
+
+  <script src="assets/js/es6-shim.js"></script>
+    <script src="assets/js/websdk.client.bundle.min.js" crossorigin="*"></script>
+    <script src="assets/js/fingerprint.sdk.min.js" crossorigin="*"></script>
+    <script src="assets/js/capture2.js" crossorigin="*"></script>
+
+
+    <script>
+
+        function check(){
+
+                var fingerPrint = "good"; 
+                var course = document.getElementById('course').value
+                var date = document.getElementById('date').value
+                var data ={fingerPrint,course,date}
+
+              axios({ url: `http://localhost:8070/attend`,
+                method: 'post',
+                 data })
+                  .then((res) => { console.log(res);
+              
+                  //window.location.href='/student_upload'
+                Swal.fire(res.data.message); 
+                
+                }) .catch((err) => { 
+                  Swal.fire('an error occured pls try again '); console.log(); }) ;
+              
+        }
+    </script>

@@ -1,0 +1,117 @@
+<!-- Vertical Layout -->
+<div class="row clearfix">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card" style="width: 50%;margin:auto">
+      <div class="header">
+        <h2>
+          CREATE ACCOUNT
+        </h2>
+
+      </div>
+      <div class="body">
+        <form id="adminForm">
+          <label for="email_address">First Name</label>
+          <div class="form-group">
+           
+              <input
+                type="text"
+              name="fname"
+                class=""
+                id="fname"
+                placeholder="Enter First Name"
+              />
+           
+          </div>
+            <label for="email_address">Last Name</label>
+          <div class="form-group">
+           
+              <input
+                type="text"
+              name="lname"
+                class=""
+                id="lname"
+                placeholder="Enter Last Name"
+              />
+           
+          </div>
+            <label for="email_address">E-mail</label>
+          <div class="form-group">
+           
+              <input
+                type="email"
+              name="email"
+                class=""
+                id="email"
+                placeholder="Enter Email"
+              />
+           
+          </div>
+            <label for="email_address">Password</label>
+          <div class="form-group">
+           
+              <input
+                type="password"
+              name="password"
+                class=""
+                id="password"
+                placeholder="Enter Password"
+              />
+           
+          </div>
+        
+
+          <br />
+          
+          <center>
+            <button
+              type="submit"
+              class="btn btn-primary m-t-15 waves-effect"
+            >SAVE</button></center>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #END# Vertical Layout -->
+
+<script>
+
+
+
+
+
+const loginForm =  document.getElementById("adminForm")
+
+loginForm.addEventListener('submit',() => {
+event.preventDefault()
+var fname = document.getElementById('fname').value
+var lname = document.getElementById('lname').value
+var email = document.getElementById('email').value
+var password = document.getElementById('password').value
+
+//const formData = new FormData(loginForm);
+//console.log("Good",formData)
+//const data = new URLSearchParams();
+//for (const pair of formData) {
+//data.append(pair[0], pair[1]);
+//}
+var data = {fname,lname, email,password}
+console.log("Data",data)
+axios({
+url: `http://localhost:8080/save_admin`, 
+method: 'post',
+data
+})
+.then((res) => {
+console.log(res);
+Swal.fire(res.data.message);
+
+
+})
+.catch((err) => {
+Swal.fire('an error occured pls try again later ');
+console.log();
+})
+});
+
+</script>

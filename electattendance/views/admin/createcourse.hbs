@@ -1,0 +1,150 @@
+<!-- Vertical Layout -->
+<div class="row clearfix">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card" style="width: 70%;margin:auto">
+      <div class="header">
+        <h2>
+          CREATE COURSE
+        </h2>
+
+      </div>
+      <div class="body">
+        <form id="courseForm">
+          <label for="email_address">Name</label>
+          <div class="form-group">
+           
+              <input
+                type="text"
+                name="name"
+                class=""
+                placeholder="Enter Course Name"
+                id="namez"
+              />
+           
+          </div>
+           <label >Faculty</label>
+          <div class="form-group">
+           
+              <select id="faculty">
+                  <option value=""> -- Select Faculty -- </option>
+              </select>
+           
+          </div>
+           <label for="email_address">Department</label>
+          <div class="form-group">
+           
+              <select id="department">
+                  <option value="">-- Select Department --</option>
+                   
+              </select>
+           
+          </div>
+          <label for="password">Description</label>
+          <div class="form-group">
+        
+              <textarea class="" id="description" rows="3" placeholder="Enter Description"></textarea>
+            
+          </div>
+
+          
+          <center>
+            <button
+              type="submit"
+              class="btn btn-primary m-t-15 waves-effect"
+            >SAVE</button></center>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #END# Vertical Layout -->
+
+
+
+<script>
+const loginForm =  document.getElementById("courseForm")
+
+loginForm.addEventListener('submit',() => {
+event.preventDefault()
+var name = document.getElementById('namez').value
+var department = document.getElementById('department').value
+var faculty = document.getElementById('faculty').value
+var description = document.getElementById('description').value
+
+var data = {name,department,faculty, description}
+console.log("Data",data)
+axios({
+url: `http://localhost:8070/save_course`, 
+method: 'post',
+data
+})
+.then((res) => {
+console.log(res);
+Swal.fire(res.data.message);
+
+
+})
+.catch((err) => {
+Swal.fire('an error occured pls try again ');
+console.log();
+})
+});
+
+
+
+     
+
+
+</script>
+
+
+<script>
+     
+ const xhrc = new XMLHttpRequest()
+
+      xhrc.open("GET", 'http://localhost:8070/get_faculty');
+
+      xhrc.onreadystatechange = function() {
+        if (this.status == 200 && this.readyState == 4) {
+          let apiDatac = JSON.parse(this.responseText);
+          let select = document.getElementById('faculty')
+        
+
+          console.log("GOOD2", apiDatac)
+          apiDatac.forEach(element => {
+               let option = document.createElement('option')
+                option.innerText = element.name
+                select.append(option)
+
+           });
+        } else {
+          console.log(this.statusText);
+        }
+      }
+      xhrc.send();
+</script>
+
+<script>
+  const xhrcd = new XMLHttpRequest()
+
+      xhrcd.open("GET", 'http://localhost:8070/get_department');
+
+      xhrcd.onreadystatechange = function() {
+        if (this.status == 200 && this.readyState == 4) {
+          let apiData = JSON.parse(this.responseText);
+          let select = document.getElementById('department')
+        
+
+          console.log("GOOD1", apiData)
+          apiData.forEach(element => {
+               let option = document.createElement('option')
+                option.innerText = element.name
+                select.append(option)
+
+           });
+        } else {
+          console.log(this.statusText);
+        }
+      }
+      xhrcd.send();
+</script>
